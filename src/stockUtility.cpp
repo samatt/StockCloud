@@ -8,39 +8,43 @@
 
 #include "stockUtility.h"
 
-vector <Stock>  createStocks (vector <std::string> stringList){
+vector <Stock> stockUtility:: createStocks (vector <std::string> stringList){
     Stock stock;
     vector <Stock> stockList;
     stockUtility util;
-    while(stringList.size()>6){
+     cout<<"HERE"<<endl;
     
-        stock.setCode(stringList.back());
+    //TODO: Investigate why this first pop_back is
+    stringList.pop_back();
+    
+    while(stringList.size()>6){
+
+        stock.setAverageDailyVolume(util.filterStockList_MarketCap(stringList.back()));
+        stringList.pop_back();
+       
+        stock.setMarketCap(util.filterStockList_MarketCap(stringList.back()));
         stringList.pop_back();
         
-        stock.setName(stringList.back());
+        stock.setLastTrade(ofToFloat(stringList.back()));
         stringList.pop_back();
         
         stock.setLastTradeDate(stringList.back());
         stringList.pop_back();
-        
-        stock.setLastTrade(util.filterStockList_MarketCap(stringList.back()));
+
+        stock.setName(stringList.back());
         stringList.pop_back();
-        
-       stock.setMarketCap(util.filterStockList_MarketCap(stringList.back()));
+
+        stock.setCode(stringList.back());
         stringList.pop_back();
-        
-        stock.setAverageDailyVolume(util.filterStockList_MarketCap(stringList.back()));
-        stringList.pop_back();
-        
-        
+       
         stockList.push_back(stock);
         
     }
     
-    stockList.push_back(stock);
+    return stockList;
 }
 
-float filterStockList_MarketCap(std::string string){
+float stockUtility::filterStockList_MarketCap(std::string string){
 
     float marketcapvalue;
     
@@ -60,5 +64,7 @@ float filterStockList_MarketCap(std::string string){
 		marketcapvalue = ofToFloat(string);
 		return marketcapvalue*1000000;
 	}
+    
+    
 	return ofToFloat(string);
 }

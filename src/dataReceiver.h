@@ -10,14 +10,14 @@
 #define StockCloud_oF_dataReceiver_h
 #include "ofFileUtils.h"
 #include "ofUtils.h"
+#include "stock.h"
 
 class dataReceiver{
     
 public:
     std::list<std::string> parseData(std::string dataReceived);
-    
      vector <std::string>  fileReader(string filePath);
- 
+    
 };
 
 

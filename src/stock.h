@@ -11,6 +11,8 @@
 #define StockCloud_oF_stock_h
 #include <iostream>
 #include <string>
+#include "ofUtils.h"
+
 
 class Stock{
     public:

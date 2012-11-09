@@ -11,7 +11,7 @@
 #include <list>
 #include "dataReceiver.h"
 //#define STRING_SIZE 20
-#include<vector.h>
+#include <vector>
 
 //fFile Test;
 
@@ -31,6 +31,9 @@ std::list<std::string> dataReceiver::parseData(std::string dataReceived){
     std::string rows;
     string data;
     vector <std::string> stockList;
+    vector <Stock> stocks;
+    Stock stock;
+    //dataReceiver util;
    // vector<std::string>::iterator x;
     
     if(file.open(filePath)){
@@ -42,9 +45,14 @@ std::list<std::string> dataReceiver::parseData(std::string dataReceived){
     ofStringReplace(data, "\",", "%");
     ofStringReplace(data, "B,", "B%");
     ofStringReplace(data, "M,", "M%");
+    //convert carriage returns
+    ofStringReplace(data, "\r\n", "%");
+    //ofStringReplace(data, "\n", "%");
+    //Convert numbers
     for (int i=0; i<10; i++) {
         ofStringReplace(data, ofToString(i) + ",", ofToString(i)+ "%");
     }
+ 
     ofStringReplace(data, "\"", "");
     stockList = ofSplitString(data, "%");
     for (vector<string>::iterator i = stockList.begin();
@@ -55,5 +63,5 @@ std::list<std::string> dataReceiver::parseData(std::string dataReceived){
     }
 
     return stockList;
-}
 
+}

@@ -2,6 +2,13 @@
 
 #include "ofMain.h"
 #include "ofFileUtils.h"
+#include "dataReceiver.h"
+#include "stockUtility.h"
+#include "stock.h"
+#include <iostream>
+#include "ofEasyCam.h"
+#include "Particle.h"
+#include "Force.h"
 
 class testApp : public ofBaseApp{
 	public:
@@ -18,4 +25,15 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+        
+        ofEasyCam cam;
+        vector <Stock> stocks;
+        vector <Particle> stockParticles;
+        vector  <Force> forces;
+        int redValue;
+        int greenValue;
+        int blueValue;
+        int averageValue;
+        int lastX, lastY;
+        ofMesh mesh;
 };

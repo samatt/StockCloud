@@ -11,14 +11,14 @@
 
 #include <iostream>
 #include "stock.h"
-#include <vector.h>
+#include <vector>
 #include "ofFileUtils.h"
 #include "ofUtils.h"
 class stockUtility{
 
 public:
     
-    vector <Stock>  createStocks (vector <std::string> stringList);
+    vector <Stock> createStocks(vector <std::string> stringList);
     
     float filterStockList_MarketCap(std::string string);
 };
